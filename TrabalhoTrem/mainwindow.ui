@@ -72,7 +72,9 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:yellow</string>
+     <string notr="true">background-color:yellow
+
+</string>
     </property>
     <property name="text">
      <string/>
