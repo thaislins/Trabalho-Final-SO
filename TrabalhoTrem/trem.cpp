@@ -5,12 +5,8 @@ Trem::Trem(int id, int x, int y)
     this->id = id;
     this->x = x;
     this->y = y;
-    velocidade = 250;
+    velocidade = 50;
     enable = true;
-    s1 = new Semaforo(1,1,IPC_CREAT|0600);
-    s2 = new Semaforo(2,1,IPC_CREAT|0600);
-    s3 = new Semaforo(3,1,IPC_CREAT|0600);
-    //delete s1;
 }
 
 Trem::~Trem()
@@ -28,7 +24,7 @@ void Trem::setEnable(bool enable)
     this->enable = enable;
 }
 
-void Trem::stop(Semaforo *s1, Semaforo *s2, Semaforo *s3) {
+void Trem::stop() {
 
     if(id == 0) {
         //Primeira Região Crítica
@@ -149,7 +145,7 @@ void Trem::run()
         default:
             break;
         }
-        stop(s1,s2,s3);
+        stop();
         this_thread::sleep_for(chrono::milliseconds(velocidade));
     }
 }

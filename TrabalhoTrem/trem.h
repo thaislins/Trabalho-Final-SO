@@ -17,8 +17,10 @@ public:
     void run();
     void setVelocidade(int);
     void setEnable(bool);
-    //int semaphorestop(int,int);
-    void stop(Semaforo *s1, Semaforo *s2, Semaforo *s3);
+    void stop();
+    Semaforo *s1;
+    Semaforo *s2;
+    Semaforo *s3;
 
 signals:
     void updateGUI(int,int,int);
@@ -30,9 +32,6 @@ private:
    int y;
    int velocidade;
    bool enable;
-   Semaforo *s1;
-   Semaforo *s2;
-   Semaforo *s3;
 };
 
 #endif // TREM_H

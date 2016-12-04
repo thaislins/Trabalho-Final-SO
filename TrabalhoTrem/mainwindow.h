@@ -22,13 +22,18 @@ public:
 public slots:
     void updateInterface(int,int,int);
 
+protected:
+    void closeEvent(QCloseEvent *event);
+
 private:
     Ui::MainWindow *ui;
     Trem *trem0;
     Trem *trem1;
     Trem *trem2;
     Trem *trem3;
-   // Semaforo *s1;
+    Semaforo *s1;
+    Semaforo *s2;
+    Semaforo *s3;
 };
 
 #endif // MAINWINDOW_H
