@@ -31,43 +31,52 @@ void Trem::setEnable(bool enable)
 void Trem::stop(Semaforo *s1, Semaforo *s2, Semaforo *s3) {
 
     if(id == 0) {
-         if(x == 150 and y == 120) {
+        //Primeira Região Crítica
+         if(x == 150 and y == 110) {
              s1->P();
          }
+         //Saiu da primeira região crítica
          if (x == 290 and y == 110) {
              s1->V();
          }
     }
     else if(id == 1) {
-         if(x == 150 and y == 120) {
+        //Primeira região crítica
+         if(x == 150 and y == 130) {
              s1->P();
-          }
-         if(x == 290 and y == 120) {
-             s1->V();
              s2->P();
+          }
+         //saiu da primeira região crítica
+         if(x == 290 and y == 130) {
+             s1->V();
+             //s2->P();
          }
+         //saiu da segunda região crítica
          if(x ==280 and y == 220) {
              s2->V();
          }
     }
     if(id == 2) {
-        if(x == 300 and y == 120) {
-            s2->V();
-        }
+        //Terceira região crítica
+       if(x == 430 and y == 210) {
+             s3->P();
+             s2->P();
+       }
+       //saiu da terceira região crítica
        if(x == 290 and y == 210) {
-            s2->P();
             s3->V();
        }
-       if(x == 430 and y == 220) {
-            s3->P();
-        }
+       //saiu da segunda região crítica
+       if(x == 300 and y == 120) {
+           s2->V();
+       }
     }
     else {
-        if(x == 290 and y == 220) {
+        if(x == 290 and y == 230) {
            s3->P();
         }
         if(x == 430 and y == 230) {
-            s3->V();
+           s3->V();
         }
     }
 }
