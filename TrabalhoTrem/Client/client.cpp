@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     memset(&endereco, 0, sizeof(endereco));
     endereco.sin_family = AF_INET;
     endereco.sin_port = htons(PORTNUM);
-    endereco.sin_addr.s_addr = inet_addr("192.160.7.1");
+    endereco.sin_addr.s_addr = inet_addr("192.168.0.2"); // PUT YOUR IP HERE "ip addr show" no terminal
  
     /*
      * Criando o Socket
