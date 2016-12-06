@@ -3,8 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+    ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     trem0 = new Trem(0,170,20);
@@ -42,34 +41,52 @@ MainWindow::MainWindow(QWidget *parent) :
     trem1->start();
     trem2->start();
     trem3->start();
-
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
-{
+void MainWindow::trainSpeed() {
+    trem0->setVelocidade(100);
+    trem1->setVelocidade(50);
+    trem2->setVelocidade(240);
+    trem3->setVelocidade(100);
+}
+
+void MainWindow::updateSemaphoreCounter() {
+
+    ui->count1->display(s1->getContador());
+    ui->count2->display(s2->getContador());
+    ui->count3->display(s3->getContador());
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
     delete s1;
     delete s2;
     delete s3;
 }
 
-void MainWindow::updateInterface(int id, int x, int y)
-{
+void MainWindow::updateInterface(int id, int x, int y) {
     switch(id){
         case 0:
+            trainSpeed();
+            updateSemaphoreCounter();
             ui->labelTrem00->setGeometry(x,y,20,20);
             break;
         case 1:
-             ui->labelTrem01->setGeometry(x,y,20,20);
+            trainSpeed();
+            updateSemaphoreCounter();
+            ui->labelTrem01->setGeometry(x,y,20,20);
             break;
         case 2:
+            trainSpeed();
+            updateSemaphoreCounter();
             ui->labelTrem02->setGeometry(x,y,20,20);
             break;
         case 3:
+            trainSpeed();
+            updateSemaphoreCounter();
             ui->labelTrem03->setGeometry(x,y,20,20);
             break;
         default:

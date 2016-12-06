@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: red</string>
+     <string notr="true">background-color: rgb(8, 8, 8)</string>
     </property>
     <property name="text">
      <string/>
@@ -74,7 +74,8 @@ border: 1px solid black</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: red</string>
+     <string notr="true">background-color: rgb(255, 0, 127)
+</string>
     </property>
     <property name="text">
      <string/>
@@ -90,7 +91,7 @@ border: 1px solid black</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: red</string>
+     <string notr="true">background-color: rgb(127, 20, 122)</string>
     </property>
     <property name="text">
      <string/>
@@ -106,7 +107,7 @@ border: 1px solid black</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: red</string>
+     <string notr="true">background-color: rgb(58, 255, 157)</string>
     </property>
     <property name="text">
      <string/>
@@ -146,6 +147,75 @@ border: 1px solid black</string>
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>30</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Semáforo 1</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="count1">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>60</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>30</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Semáforo 2</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="count2">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>60</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>30</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Semáforo 3</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="count3">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>60</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>labelTrilho02</zorder>
    <zorder>labelTrilho00</zorder>
    <zorder>labelTrilho03</zorder>
@@ -154,6 +224,12 @@ border: 1px solid black</string>
    <zorder>labelTrem03</zorder>
    <zorder>labelTrem02</zorder>
    <zorder>labelTrem00</zorder>
+   <zorder>label_4</zorder>
+   <zorder>count1</zorder>
+   <zorder>label</zorder>
+   <zorder>count2</zorder>
+   <zorder>label_5</zorder>
+   <zorder>count3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

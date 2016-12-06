@@ -5,7 +5,7 @@ Trem::Trem(int id, int x, int y)
     this->id = id;
     this->x = x;
     this->y = y;
-    velocidade = 50;
+    velocidade = 20;
     enable = true;
 }
 
@@ -149,4 +149,3 @@ void Trem::run()
         this_thread::sleep_for(chrono::milliseconds(velocidade));
     }
 }
-

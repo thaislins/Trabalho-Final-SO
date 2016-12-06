@@ -18,12 +18,17 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void updateSemaphoreCounter();
+    void trainSpeed();
 
 public slots:
     void updateInterface(int,int,int);
 
 protected:
     void closeEvent(QCloseEvent *event);
+
+private slots:
+    void on_playbutton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -34,6 +39,8 @@ private:
     Semaforo *s1;
     Semaforo *s2;
     Semaforo *s3;
+
+    bool first;
 };
 
 #endif // MAINWINDOW_H

@@ -15,9 +15,9 @@ public:
     ~Trem();
     void start();
     void run();
+    void stop();
     void setVelocidade(int);
     void setEnable(bool);
-    void stop();
     Semaforo *s1;
     Semaforo *s2;
     Semaforo *s3;
