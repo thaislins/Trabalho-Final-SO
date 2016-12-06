@@ -82,17 +82,19 @@ int main(int argc, char *argv[])
     int socketId;
     Test test;
 
-    cout << "-------------------------------------" << endl;
-    cout << "              *MENU*" << endl;
-    cout << "-------------------------------------" << endl;
-    sleep(1);
-    cout << "\nOpções:" << endl;
-    cout << "   1.Defina a velocidade de todos os trens" << endl;
-    cout << "   2.Defina a velocidade de um trem específico" << endl;
-    cout << "   3.Ligar ou desligar todos os trens" << endl;
-    cout << "   4.Ligar ou desligar um trem específico" << endl;
-
     while(1) {
+        system("clear");
+        cout << "-------------------------------------" << endl;
+        cout << "              *MENU*" << endl;
+        cout << "-------------------------------------" << endl;
+        sleep(1);
+        cout << "\nOpções:" << endl;
+        cout << "   0.Sair do programa" << endl;
+        cout << "   1.Defina a velocidade de todos os trens" << endl;
+        cout << "   2.Defina a velocidade de um trem específico" << endl;
+        cout << "   3.Ligar ou desligar todos os trens" << endl;
+        cout << "   4.Ligar ou desligar um trem específico" << endl;
+
         std::cout << endl << "Qual função de 1 à 4 executar: " << endl;
         std::cin >> test.todo;
 
