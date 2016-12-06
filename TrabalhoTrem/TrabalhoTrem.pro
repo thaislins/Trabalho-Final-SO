@@ -16,12 +16,10 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     trem.cpp \
     semaforo.cpp \
-    socket.cpp
 
 HEADERS  += mainwindow.h \
     trem.h \
     semaforo.h \
-    socket.h
 
 FORMS    += mainwindow.ui
 

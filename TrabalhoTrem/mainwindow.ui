@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(8, 8, 8)</string>
+     <string notr="true">background-color: rgb(11, 43, 250)</string>
     </property>
     <property name="text">
      <string/>
@@ -91,7 +91,7 @@ border: 1px solid black</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(127, 20, 122)</string>
+     <string notr="true">background-color: rgb(174, 10, 255)</string>
     </property>
     <property name="text">
      <string/>
