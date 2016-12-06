@@ -23,7 +23,7 @@ public:
 };
 
 #define MAXNAME 100
-#define PORTNUM 4325
+#define PORTNUM 1234
 
 class MainWindow : public QMainWindow{
     Q_OBJECT
