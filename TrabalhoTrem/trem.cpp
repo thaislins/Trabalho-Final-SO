@@ -5,8 +5,8 @@ Trem::Trem(int id, int x, int y)
     this->id = id;
     this->x = x;
     this->y = y;
-    velocidade = 20;
-    enable = true;
+    velocidade = 100;
+    enable = false;
 }
 
 Trem::~Trem()
@@ -113,9 +113,9 @@ void Trem::run()
                 else
                     y-=10;
             }
-            if (enable)
                 break;
             case 2:
+            if (enable)
             {
                 emit updateGUI(id,x,y);
                 if (y == 120 && x <430)

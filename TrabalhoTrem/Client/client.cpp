@@ -12,6 +12,7 @@
 #define PORTNUM 4325
  
 class Test {
+public:
     int todo;
     int a;
     int b;
@@ -23,7 +24,7 @@ int main(int argc, char *argv[])
     int socketId;
     Test test;
  
-    std::cout << "Function to execute: [1 - 4]: ";
+    std::cout << "Qual função de 1 à 4 executar: ";
     std::cin >> test.todo;
 
     std::cout << "A: ";
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
     memset(&endereco, 0, sizeof(endereco));
     endereco.sin_family = AF_INET;
     endereco.sin_port = htons(PORTNUM);
-    endereco.sin_addr.s_addr = inet_addr("192.168.0.2"); // PUT YOUR IP HERE "ip addr show" no terminal
+    endereco.sin_addr.s_addr = inet_addr("192.168.7.1"); // PUT YOUR IP HERE "ip addr show" no terminal
  
     /*
      * Criando o Socket
@@ -70,14 +71,14 @@ int main(int argc, char *argv[])
  
     //Enviar uma msg para o cliente que se conectou
     printf("Cliente vai enviar uma mensagem\n");
-    bytesenviados = send(socketId,&mensagem,sizeof(mensagem),0);
+    bytesenviados = send(socketId,&test,sizeof(test),0);
  
     if (bytesenviados == -1)
     {
         printf("Falha ao executar send()");
         exit(EXIT_FAILURE);
     }
-    printf("Cliente enviou a seguinte msg (%d bytes) para o servidor: %s \n",bytesenviados,mensagem.msg);
+    printf("Cliente enviou a seguinte msg (%d bytes) para o servidor: %c \n",bytesenviados,test.todo);
  
     close(socketId);
  

@@ -101,7 +101,7 @@ void MainWindow::watchServer() {
     endereco.sin_family = AF_INET;
     endereco.sin_port = htons(PORTNUM);
     // endereco.sin_addr.s_addr = INADDR_ANY;
-    endereco.sin_addr.s_addr = inet_addr("192.168.0.2");  // PUT YOUR IP HERE "ip addr show" no terminal
+    endereco.sin_addr.s_addr = inet_addr("192.168.7.1");  // PUT YOUR IP HERE "ip addr show" no terminal
 
     /*
      * Criando o Socket
@@ -137,11 +137,12 @@ void MainWindow::watchServer() {
         //disparar a thread
         std::thread t(&MainWindow::socketHandler, this, conexaoClienteId, test);
         t.detach();
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        //std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event){
+    server.detach();
     delete s1;
     delete s2;
     delete s3;
@@ -152,6 +153,7 @@ void MainWindow::updateSemaphoreCounter(){
     ui->count1->display(s1->getContador());
     ui->count2->display(s2->getContador());
     ui->count3->display(s3->getContador());
+    //ui->trainS1->setStyleSheet("* { color: blue }");
 }
 
 
