@@ -30,10 +30,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     trem3->s3 = s3;
 
 
-    connect(trem0,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-    connect(trem1,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-    connect(trem2,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-    connect(trem3,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
+    connect(trem0,SIGNAL(updateGUI(int,int,int,bool)),SLOT(updateInterface(int,int,int,bool)));
+    connect(trem1,SIGNAL(updateGUI(int,int,int,bool)),SLOT(updateInterface(int,int,int,bool)));
+    connect(trem2,SIGNAL(updateGUI(int,int,int,bool)),SLOT(updateInterface(int,int,int,bool)));
+    connect(trem3,SIGNAL(updateGUI(int,int,int,bool)),SLOT(updateInterface(int,int,int,bool)));
 
     trem0->start();
     trem1->start();
@@ -68,20 +68,22 @@ void MainWindow::socketHandler(MainWindow *window, int socketDescriptor, Test te
         exit(EXIT_SUCCESS);
     }
 
-    if (test.todo == 1) {
-        // Define a velocidade de todos os trens como "a".
-        window->trainSpeed(test.a);
-    } else if (test.todo == 2) {
-        // Define a velocidade do trem "a" como "b".
-        window->trainSpeed(test.a, test.b);
-    } else if (test.todo == 3) {
-        // Habilita todos os trens com "a".
-        window->setTrainEnable((bool)test.a);
-    } else if (test.todo == 4) {
-        // Habilita o trem "a" com "b".
-        window->setTrainEnable(test.a, (bool)test.b);
+    switch(test.todo) {
+        case 1:
+            window->trainSpeed(test.a);
+            break;
+        case 2:
+            window->trainSpeed(test.a, test.b);
+            break;
+        case 3:
+            window->setTrainEnable((bool)test.a);
+            break;
+        case 4:
+            window->setTrainEnable(test.a, (bool)test.b);
+            break;
+        default:
+            break;
     }
-
     ::close(socketDescriptor);
 }
 
@@ -101,7 +103,7 @@ void MainWindow::watchServer() {
     endereco.sin_family = AF_INET;
     endereco.sin_port = htons(PORTNUM);
     // endereco.sin_addr.s_addr = INADDR_ANY;
-    endereco.sin_addr.s_addr = inet_addr("192.168.7.1");  // PUT YOUR IP HERE "ip addr show" no terminal
+    endereco.sin_addr.s_addr = inet_addr("192.168.0.109");  // PUT YOUR IP HERE "ip addr show" no terminal
 
     /*
      * Criando o Socket
@@ -141,69 +143,6 @@ void MainWindow::watchServer() {
     }
 }
 
-void MainWindow::closeEvent(QCloseEvent *event){
-    server.detach();
-    delete s1;
-    delete s2;
-    delete s3;
-}
-
-
-void MainWindow::updateSemaphoreCounter(){
-    ui->count1->display(s1->getContador());
-    ui->count2->display(s2->getContador());
-    ui->count3->display(s3->getContador());
-    //ui->trainS1->setStyleSheet("* { color: blue }");
-}
-
-
-void MainWindow::updateInterface(int id, int x, int y){
-    switch(id){
-        case 0:
-            updateSemaphoreCounter();
-            ui->labelTrem00->setGeometry(x,y,20,20);
-            break;
-        case 1:
-            updateSemaphoreCounter();
-            ui->labelTrem01->setGeometry(x,y,20,20);
-            break;
-        case 2:
-            updateSemaphoreCounter();
-            ui->labelTrem02->setGeometry(x,y,20,20);
-            break;
-        case 3:
-            updateSemaphoreCounter();
-            ui->labelTrem03->setGeometry(x,y,20,20);
-            break;
-        default:
-            break;
-    }
-}
-
-void MainWindow::trainSpeed(int velocity){
-    trem0->setVelocidade(velocity);
-    trem1->setVelocidade(velocity);
-    trem2->setVelocidade(velocity);
-    trem3->setVelocidade(velocity);
-}
-
-void MainWindow::trainSpeed(int train, int velocity){
-    switch(train){
-    case 0:
-        trem0->setVelocidade(velocity);
-        break;
-    case 1:
-        trem1->setVelocidade(velocity);
-        break;
-    case 2:
-        trem2->setVelocidade(velocity);
-        break;
-    case 3:
-        trem3->setVelocidade(velocity);
-        break;
-    }
-}
-
 void MainWindow::setTrainEnable(bool enable) {
     trem0->setEnable(enable);
     trem1->setEnable(enable);
@@ -226,4 +165,72 @@ void MainWindow::setTrainEnable(int train, bool enable) {
         trem3->setEnable(enable);
         break;
     }
+}
+
+void MainWindow::trainSpeed(int velocity){
+    trem0->setVelocidade(velocity);
+    trem1->setVelocidade(velocity);
+    trem2->setVelocidade(velocity);
+    trem3->setVelocidade(velocity);
+}
+
+void MainWindow::trainSpeed(int train, int velocidade){
+    switch(train){
+    case 0:
+        trem0->setVelocidade(velocidade);
+        break;
+    case 1:
+        trem1->setVelocidade(velocidade);
+        break;
+    case 2:
+        trem2->setVelocidade(velocidade);
+        break;
+    case 3:
+        trem3->setVelocidade(velocidade);
+        break;
+    }
+}
+
+void MainWindow::updateSemaphoreInfo(){
+    ui->count1->display(s1->getContador());
+    ui->count2->display(s2->getContador());
+    ui->count3->display(s3->getContador());
+}
+
+
+void MainWindow::updateInterface(int id, int x, int y, bool critic){
+
+    switch(id){
+        case 0:
+            updateSemaphoreInfo();
+            ui->labelTrem00->setGeometry(x,y,20,20);
+            ui->trainS1->setStyleSheet(critic ? "background-color: rgb(255, 0, 127)" : "background-color: none" );
+            break;
+        case 1:
+            updateSemaphoreInfo();
+            ui->labelTrem01->setGeometry(x,y,20,20);
+            ui->trainS1->setStyleSheet(critic ? "background-color: rgb(11, 43, 250)" : "background-color: none" );
+            ui->trainS2->setStyleSheet(critic ? "background-color: rgb(11, 43, 250)" : "background-color: none" );
+            break;
+        case 2:
+            updateSemaphoreInfo();
+            ui->labelTrem02->setGeometry(x,y,20,20);
+            ui->trainS2->setStyleSheet(critic ? "background-color: rgb(174, 10, 255)" : "background-color: none" );
+            ui->trainS3->setStyleSheet(critic ? "background-color: rgb(174, 10, 255)" : "background-color: none" );
+            break;
+        case 3:
+            updateSemaphoreInfo();
+            ui->labelTrem03->setGeometry(x,y,20,20);
+            ui->trainS3->setStyleSheet(critic ? "background-color: rgb(58, 255, 157)" : "background-color: none" );
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event){
+    server.detach();
+    delete s1;
+    delete s2;
+    delete s3;
 }

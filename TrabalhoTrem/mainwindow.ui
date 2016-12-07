@@ -216,6 +216,55 @@ border: 1px solid black</string>
      </rect>
     </property>
    </widget>
+   <widget class="QLabel" name="trainS1">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>60</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="trainS2">
+    <property name="geometry">
+     <rect>
+      <x>519</x>
+      <y>60</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="trainS3">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>60</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>labelTrilho02</zorder>
    <zorder>labelTrilho00</zorder>
    <zorder>labelTrilho03</zorder>
@@ -230,6 +279,9 @@ border: 1px solid black</string>
    <zorder>count2</zorder>
    <zorder>label_5</zorder>
    <zorder>count3</zorder>
+   <zorder>trainS1</zorder>
+   <zorder>trainS2</zorder>
+   <zorder>trainS3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

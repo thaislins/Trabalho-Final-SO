@@ -7,6 +7,7 @@ Trem::Trem(int id, int x, int y)
     this->y = y;
     velocidade = 100;
     enable = false;
+    usingSemaphore = false;
 }
 
 Trem::~Trem()
@@ -30,10 +31,12 @@ void Trem::stop() {
         //Primeira Região Crítica
          if(x == 150 and y == 110) {
              s1->P();
+             usingSemaphore = true;
          }
          //Saiu da primeira região crítica
          if (x == 290 and y == 110) {
              s1->V();
+             usingSemaphore = false;
          }
     }
     else if(id == 1) {
@@ -41,15 +44,16 @@ void Trem::stop() {
          if(x == 150 and y == 130) {
              s1->P();
              s2->P();
+             usingSemaphore = true;
           }
          //saiu da primeira região crítica
          if(x == 290 and y == 130) {
              s1->V();
-             //s2->P();
          }
          //saiu da segunda região crítica
          if(x ==280 and y == 220) {
              s2->V();
+             usingSemaphore = false;
          }
     }
     if(id == 2) {
@@ -57,6 +61,7 @@ void Trem::stop() {
        if(x == 430 and y == 210) {
              s3->P();
              s2->P();
+             usingSemaphore = true;
        }
        //saiu da terceira região crítica
        if(x == 290 and y == 210) {
@@ -65,14 +70,17 @@ void Trem::stop() {
        //saiu da segunda região crítica
        if(x == 300 and y == 120) {
            s2->V();
+           usingSemaphore = false;
        }
     }
     else {
         if(x == 290 and y == 230) {
            s3->P();
+           usingSemaphore = true;
         }
         if(x == 430 and y == 230) {
            s3->V();
+           usingSemaphore = false;
         }
     }
 }
@@ -89,7 +97,7 @@ void Trem::run()
         case 0:
             if (enable)
             {
-                emit updateGUI(id,x,y);
+                emit updateGUI(id,x,y,usingSemaphore);
                 if (y == 20 && x > 150)
                     x-=10;
                 else if (x == 150 && y < 120)
@@ -103,7 +111,7 @@ void Trem::run()
         case 1:
             if (enable)
             {
-                emit updateGUI(id,x,y);
+                emit updateGUI(id,x,y,usingSemaphore);
                 if (y == 120 && x <290)
                     x+=10;
                 else if (x == 290 && y < 220)
@@ -117,8 +125,8 @@ void Trem::run()
             case 2:
             if (enable)
             {
-                emit updateGUI(id,x,y);
-                if (y == 120 && x <430)
+                emit updateGUI(id,x,y,usingSemaphore);
+                if (y == 120 && x < 430)
                     x+=10;
                 else if (x == 430 && y < 220)
                     y+=10;
@@ -131,7 +139,7 @@ void Trem::run()
         case 3:
             if (enable)
             {
-                emit updateGUI(id,x,y);
+                emit updateGUI(id,x,y,usingSemaphore);
                 if (y == 220 && x <430)
                     x+=10;
                 else if (x == 430 && y < 320)

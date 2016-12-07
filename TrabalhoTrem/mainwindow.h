@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
+#include <QString>
 #include "trem.h"
 #include "semaforo.h"
 #include <arpa/inet.h>  //inet_addr
@@ -31,7 +32,6 @@ class MainWindow : public QMainWindow{
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void updateSemaphoreCounter();
     void trainSpeed(int velocity);
     void trainSpeed(int train, int velocity);
     void setTrainEnable(bool enable);
@@ -39,8 +39,11 @@ public:
     void watchServer();
     static void socketHandler(MainWindow *window, int socketDescriptor, Test test);
 
+    //void updateSI();
+
 public slots:
-    void updateInterface(int,int,int);
+    void updateInterface(int,int,int,bool);
+    void updateSemaphoreInfo();
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -54,6 +57,7 @@ private:
     Semaforo *s1;
     Semaforo *s2;
     Semaforo *s3;
+    std::thread semaphoreinfo;
     std::thread server;
 
     bool first;

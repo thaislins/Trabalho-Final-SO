@@ -2,6 +2,7 @@
 #define TREM_H
 
 #include <QObject>
+#include <QString>
 #include <thread>
 #include <chrono>
 #include "semaforo.h"
@@ -23,7 +24,7 @@ public:
     Semaforo *s3;
 
 signals:
-    void updateGUI(int,int,int);
+    void updateGUI(int,int,int,bool);
 
 private:
    std::thread threadTrem;
@@ -32,6 +33,7 @@ private:
    int y;
    int velocidade;
    bool enable;
+   bool usingSemaphore;
 };
 
 #endif // TREM_H
